@@ -27,6 +27,9 @@ function createSquares(gridDimensions) {
     square.setAttribute("class", "game-square");
     square.style.width = squareSize;
     square.style.height = squareSize;
+    square.addEventListener("mouseover", function () {
+      square.style.backgroundColor = "red";
+    });
 
     squareContainer.appendChild(square);
   }
