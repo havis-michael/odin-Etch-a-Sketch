@@ -1,3 +1,7 @@
+window.addEventListener("load", function () {
+  createSquares(16);
+});
+
 let newGameButton = document.querySelector(".new-game-button");
 const gameBoardWidth = 960;
 
@@ -18,6 +22,9 @@ function createSquares(gridDimensions) {
 
   let numberOfSquares = gridDimensions ** 2;
   let squareSize = `${gameBoardWidth / gridDimensions}px`;
+  let squareBackgroundColor = "rgb(211, 211, 211)";
+  let squareOpacity = 0.1;
+
   let squareContainer = document.querySelector(".square-hole");
   squareContainer.innerHTML = "";
 
@@ -27,8 +34,24 @@ function createSquares(gridDimensions) {
     square.setAttribute("class", "game-square");
     square.style.width = squareSize;
     square.style.height = squareSize;
+    square.style.backgroundColor = squareBackgroundColor;
+    square.style.opacity = squareOpacity;
+
     square.addEventListener("mouseover", function () {
-      square.style.backgroundColor = "red";
+      let currentBackgroundColor = square.style.backgroundColor;
+      let currentOpacity = square.style.opacity;
+
+      let red = Math.floor(Math.random() * 256);
+      let blue = Math.floor(Math.random() * 256);
+      let green = Math.floor(Math.random() * 256);
+      let newBackgroundColor = `rgb( ${red}, ${blue}, ${green})`;
+      let newOpacity = +currentOpacity + 0.1;
+
+      currentBackgroundColor == squareBackgroundColor
+        ? (square.style.backgroundColor = newBackgroundColor)
+        : "";
+
+      square.style.opacity = newOpacity;
     });
 
     squareContainer.appendChild(square);
